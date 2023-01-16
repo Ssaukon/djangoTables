@@ -1,0 +1,71 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">Ресторан</h1>
+    <div class="choice-date">Выбирите дату:</div>
+    <form method="post" action="" class="form-date">
+        {% csrf_token %}
+        <input type="date" id="dateInput" onchange="submitForm()" name="date" value="{{strNowDate}}">
+        <input type="submit" id="submitBtn" style="display:none;">
+    </form>
+    <div class="title-2">Зал ресторана</div>
+    <ul class="color-table">
+        <li><div></div> - Красный цвет - cвободный</li>
+        <li><div></div> - Серый цвет - занятый</li>
+    </ul>
+    <form class="form-table" action="" method="post">
+        {% csrf_token %}        
+        <div class="block-body-tables">
+            {% for table in tables %}
+                <div class="table" id="{{table.number}}" onclick="setTableId(this)" style="
+                width: {{ table.width }}%; 
+                height: {{ table.length }}%; 
+                top: {{ table.y }}%; 
+                left: {{ table.x }}%;
+                background: red;
+                {% for order in orders %}
+                    {% if table.number == order.num_table and order.date == nowDate%}
+                        background: gray;
+                    {% endif %}
+                {% endfor %}
+                
+                {% if table.shape == 'oval' %}
+                    border-radius: 100%;
+                {% endif %}
+                ">
+                    <div class="num">Номер стола: <span>{{ table.number }}</span></div>
+                    <div class="seats">Мест: <span>{{ table.seats }}</span></div>
+                </div> 
+            {% endfor %}
+        </div>
+        <div class="input-block">
+            {% for f in form %}
+                <label class="{{ f.id_for_label }}">{{f.label}}</label>{{f}}
+            {% endfor %}
+            <button type="submit">Заказать стол</button>
+        </div>
+    </form>
+    <script>
+        function submitForm() {
+          var date = document.getElementById("dateInput").value;
+          document.getElementById("submitBtn").click();
+          
+        }
+            function setTableId(elem) {
+                let tableId = elem.getAttribute("id");
+                let dateInputFomr = document.getElementById("dateInput").value;
+                let id_date = document.querySelector(".input-block");
+
+                document.getElementById("id_num_table").value = tableId;
+                document.getElementById("id_date").value = dateInputFomr;
+                let activeTable = document.querySelector(".active");
+                if(activeTable) {
+                    activeTable.classList.remove("active");
+                }
+                elem.classList.add("active");
+                id_date.classList.add("active-input");
+            }
+        
+      </script>
+{% endblock content %}

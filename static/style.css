@@ -1,0 +1,99 @@
+li, ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.title, .choice-date{
+    text-align: center;
+}
+.title-2{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px 0 5px 0;
+}
+.color-table{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin: 0 0 15px 0;
+}
+.color-table li{
+    display: flex;
+    align-items: center;
+}
+.color-table li div{
+    margin: 0 5px 0 0;
+    width: 4px;
+    height: 4px;
+    padding: 4px;
+    border-radius: 100px;
+}
+.color-table li:first-child div{
+    background-color: red;
+}
+.color-table li:last-child div{
+    background-color: gray;
+}
+/* ---------------Столы-------------------- */
+.form-table{
+    width: 100%;
+    height: 100%;
+}
+.block-body-tables{
+    position: relative;
+    width: 65%;
+    height: 65%;
+    margin: 0 auto;
+    border: 2px solid #000;
+}
+.table{
+    position: absolute;
+    background: red;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.active{
+    background-color: gray !important;
+}
+
+.input-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.input-block input{
+    margin: 0 0 0 15px;
+}
+
+.form-date{
+    display: flex;
+    justify-content: center;
+}
+.input-block label, .input-block input, .input-block button{
+    display: none;
+}
+.input-block label {
+    font-weight: bold;
+    margin: 10px 0 15px 0;
+}
+.input-block input{
+    margin: 0 0 15px 0;
+}
+.active-input .id_name, .active-input #id_name, .active-input button{
+    display: block;
+}
+
+.thanks-block{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
